@@ -43,22 +43,22 @@ export default function InvoiceUploadPage() {
   return (
     <div className="animate-fadeIn space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Upload Invoice</h1>
-        <p className="mt-1 text-sm text-textgray">Upload a PDF or image — data is auto-extracted instantly</p>
+        <h1 className="text-2xl font-bold text-heading">Upload Invoice</h1>
+        <p className="mt-1 text-sm text-muted">Upload a PDF or image — data is auto-extracted instantly</p>
       </div>
 
       {uploadState === 'idle' && (
         <div
           onClick={handleUpload}
-          className="flex min-h-[400px] cursor-pointer flex-col items-center justify-center rounded-[6px] border-2 border-dashed border-navy-600 bg-navy-800 p-8 transition-colors hover:border-gold-500/50"
+          className="flex min-h-[400px] cursor-pointer flex-col items-center justify-center rounded-[6px] border-2 border-dashed border-border bg-white p-8 transition-colors hover:border-primary/50"
         >
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold-500/15">
-            <UploadCloud size={32} className="text-gold-500" />
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary-light">
+            <UploadCloud size={32} className="text-primary" />
           </div>
-          <p className="mt-6 text-lg font-semibold text-white">Drag &amp; drop invoice PDF or image here</p>
-          <p className="mt-2 text-sm text-textgray">or click to browse</p>
-          <p className="mt-4 text-xs text-textgray">Supported: PDF, JPG, PNG, TIFF — max 10MB</p>
-          <p className="mt-6 text-xs text-gold-500 hover:underline">
+          <p className="mt-6 text-lg font-semibold text-heading">Drag &amp; drop invoice PDF or image here</p>
+          <p className="mt-2 text-sm text-muted">or click to browse</p>
+          <p className="mt-4 text-xs text-muted">Supported: PDF, JPG, PNG, TIFF — max 10MB</p>
+          <p className="mt-6 text-xs text-primary hover:underline">
             <Camera size={12} className="mr-1 inline" />
             Scan a physical invoice with your phone camera →
           </p>
@@ -66,77 +66,77 @@ export default function InvoiceUploadPage() {
       )}
 
       {uploadState === 'loading' && (
-        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-[6px] border border-navy-600 bg-navy-800 p-8">
-          <Loader size={32} className="animate-spin text-gold-500" />
-          <p className="mt-6 text-lg font-semibold text-white">Extracting data...</p>
-          <p className="mt-2 text-sm text-textgray">OCR processing in progress</p>
+        <div className="flex min-h-[400px] flex-col items-center justify-center rounded-[6px] border border-border bg-white p-8">
+          <Loader size={32} className="animate-spin text-primary" />
+          <p className="mt-6 text-lg font-semibold text-heading">Extracting data...</p>
+          <p className="mt-2 text-sm text-muted">OCR processing in progress</p>
         </div>
       )}
 
       {uploadState === 'extracted' && (
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Left — Document Preview */}
-          <div className="rounded-[6px] border border-navy-600 bg-navy-800 p-5">
-            <h2 className="mb-4 text-sm font-semibold text-white">Document Preview</h2>
-            <div className="rounded-[6px] bg-navy-900 p-4">
+          <div className="rounded-[6px] border border-border bg-white p-5">
+            <h2 className="mb-4 text-sm font-semibold text-heading">Document Preview</h2>
+            <div className="rounded-[6px] bg-surface p-4">
               <div className="mb-3 text-center">
-                <p className="text-lg font-bold text-white">INVOICE</p>
+                <p className="text-lg font-bold text-heading">INVOICE</p>
               </div>
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-textgray">Vendor:</span>
-                  <span className="relative text-white">
+                  <span className="text-muted">Vendor:</span>
+                  <span className="relative text-heading">
                     Sai Constructions Pvt. Ltd.
-                    <span className="absolute -inset-1 rounded border border-gold-500/40 bg-gold-500/10" />
+                    <span className="absolute -inset-1 rounded border border-primary/40 bg-primary-light" />
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-textgray">GSTIN:</span>
-                  <span className="relative font-mono text-white">
+                  <span className="text-muted">GSTIN:</span>
+                  <span className="relative font-mono text-heading">
                     36AABCB1234A1Z5
-                    <span className="absolute -inset-1 rounded border border-gold-500/40 bg-gold-500/10" />
+                    <span className="absolute -inset-1 rounded border border-primary/40 bg-primary-light" />
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-textgray">Invoice No:</span>
-                  <span className="relative font-mono text-white">
+                  <span className="text-muted">Invoice No:</span>
+                  <span className="relative font-mono text-heading">
                     INV-2026-051
-                    <span className="absolute -inset-1 rounded border border-gold-500/40 bg-gold-500/10" />
+                    <span className="absolute -inset-1 rounded border border-primary/40 bg-primary-light" />
                   </span>
                 </div>
               </div>
-              <div className="mt-4 border-t border-navy-600 pt-3">
+              <div className="mt-4 border-t border-border pt-3">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="text-textgray">
+                    <tr className="text-muted">
                       <th className="pb-2 text-left font-medium">Item</th>
                       <th className="pb-2 text-right font-medium">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
                     {lineItems.map((item, i) => (
-                      <tr key={i} className="border-t border-navy-600/50">
-                        <td className="py-1.5 text-white">{item.desc}</td>
-                        <td className="py-1.5 text-right font-mono text-white">{formatINRFull(item.amount)}</td>
+                      <tr key={i} className="border-t border-slate-100">
+                        <td className="py-1.5 text-heading">{item.desc}</td>
+                        <td className="py-1.5 text-right font-mono text-heading">{formatINRFull(item.amount)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <div className="mt-3 border-t border-navy-600 pt-2 space-y-1 text-xs">
-                <div className="flex justify-between"><span className="text-textgray">Subtotal</span><span className="font-mono text-white">{formatINRFull(subtotal)}</span></div>
-                <div className="flex justify-between"><span className="text-textgray">GST (18%)</span><span className="font-mono text-white">{formatINRFull(gst)}</span></div>
-                <div className="flex justify-between border-t border-navy-600 pt-1"><span className="font-medium text-textgray">Total</span><span className="relative font-mono font-bold text-white">{formatINRFull(total)}<span className="absolute -inset-1 rounded border border-gold-500/40 bg-gold-500/10" /></span></div>
+              <div className="mt-3 border-t border-border pt-2 space-y-1 text-xs">
+                <div className="flex justify-between"><span className="text-muted">Subtotal</span><span className="font-mono text-heading">{formatINRFull(subtotal)}</span></div>
+                <div className="flex justify-between"><span className="text-muted">GST (18%)</span><span className="font-mono text-heading">{formatINRFull(gst)}</span></div>
+                <div className="flex justify-between border-t border-border pt-1"><span className="font-medium text-muted">Total</span><span className="relative font-mono font-bold text-heading">{formatINRFull(total)}<span className="absolute -inset-1 rounded border border-primary/40 bg-primary-light" /></span></div>
               </div>
             </div>
           </div>
 
           {/* Right — Extracted Data */}
           <div className="space-y-4">
-            <div className="rounded-[6px] border border-navy-600 bg-navy-800 p-5">
+            <div className="rounded-[6px] border border-border bg-white p-5">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-white">Auto-Extracted Fields</h2>
-                <span className="flex items-center gap-1.5 rounded-[6px] bg-teal-500/15 px-3 py-1 text-xs font-medium text-teal-500">
+                <h2 className="text-sm font-semibold text-heading">Auto-Extracted Fields</h2>
+                <span className="flex items-center gap-1.5 rounded-[6px] bg-[#CCFBF1] px-3 py-1 text-xs font-medium text-[#0F766E]">
                   <Check size={14} /> Extraction Complete
                 </span>
               </div>
@@ -144,50 +144,50 @@ export default function InvoiceUploadPage() {
                 {extractedFields.map((field, i) => (
                   <div key={i}>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-textgray">{field.label}</span>
-                      <span className="text-[10px] text-textgray">{field.confidence} confidence</span>
+                      <span className="text-xs text-muted">{field.label}</span>
+                      <span className="text-[10px] text-muted">{field.confidence} confidence</span>
                     </div>
-                    <div className="mt-1 flex items-center gap-2 rounded-[6px] border border-navy-600 bg-navy-900 px-3 py-2">
-                      <span className={`flex-1 text-sm text-white ${field.mono ? 'font-mono' : ''}`}>{field.value}</span>
-                      <Pencil size={12} className="text-textgray hover:text-gold-500 cursor-pointer" />
+                    <div className="mt-1 flex items-center gap-2 rounded-[6px] border border-border bg-surface px-3 py-2">
+                      <span className={`flex-1 text-sm text-heading ${field.mono ? 'font-mono' : ''}`}>{field.value}</span>
+                      <Pencil size={12} className="text-muted hover:text-primary cursor-pointer" />
                     </div>
                   </div>
                 ))}
 
                 {/* Line Items */}
                 <div>
-                  <span className="text-xs text-textgray">Line Items</span>
+                  <span className="text-xs text-muted">Line Items</span>
                   <div className="mt-1 space-y-1.5">
                     {lineItems.map((item, i) => (
-                      <div key={i} className="flex items-center justify-between rounded-[6px] border border-navy-600 bg-navy-900 px-3 py-2">
-                        <span className="text-sm text-white">{item.desc}</span>
-                        <span className="font-mono text-sm text-white">{formatINRFull(item.amount)}</span>
+                      <div key={i} className="flex items-center justify-between rounded-[6px] border border-border bg-surface px-3 py-2">
+                        <span className="text-sm text-heading">{item.desc}</span>
+                        <span className="font-mono text-sm text-heading">{formatINRFull(item.amount)}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Totals */}
-                <div className="rounded-[6px] bg-navy-900 p-3 space-y-1 text-sm">
-                  <div className="flex justify-between"><span className="text-textgray">Subtotal</span><span className="font-mono text-white">{formatINRFull(subtotal)}</span></div>
-                  <div className="flex justify-between"><span className="text-textgray">GST (18%)</span><span className="font-mono text-white">{formatINRFull(gst)}</span></div>
-                  <div className="flex justify-between border-t border-navy-600 pt-1"><span className="font-medium text-textgray">Total</span><span className="font-mono font-bold text-gold-500">{formatINRFull(total)}</span></div>
+                <div className="rounded-[6px] bg-surface p-3 space-y-1 text-sm">
+                  <div className="flex justify-between"><span className="text-muted">Subtotal</span><span className="font-mono text-heading">{formatINRFull(subtotal)}</span></div>
+                  <div className="flex justify-between"><span className="text-muted">GST (18%)</span><span className="font-mono text-heading">{formatINRFull(gst)}</span></div>
+                  <div className="flex justify-between border-t border-border pt-1"><span className="font-medium text-muted">Total</span><span className="font-mono font-bold text-primary">{formatINRFull(total)}</span></div>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-textgray">Payment Terms</span>
-                  <span className="text-white">Net 30</span>
+                  <span className="text-muted">Payment Terms</span>
+                  <span className="text-heading">Net 30</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-textgray">Bank Account</span>
-                  <span className="text-white">HDFC 50100234567891</span>
+                  <span className="text-muted">Bank Account</span>
+                  <span className="text-heading">HDFC 50100234567891</span>
                 </div>
               </div>
             </div>
 
             {/* Link to PO and GRN */}
-            <div className="rounded-[6px] border border-navy-600 bg-navy-800 p-5">
-              <h2 className="mb-3 text-sm font-semibold text-white">Link to PO & GRN</h2>
+            <div className="rounded-[6px] border border-border bg-white p-5">
+              <h2 className="mb-3 text-sm font-semibold text-heading">Link to PO & GRN</h2>
               <div className="space-y-3">
                 <LinkDropdown label="Link to PO" value="PO-2026-040 — Sai Constructions" onLink={() => setLinkedPO(true)} linked={linkedPO} />
                 <LinkDropdown label="Link to GRN" value="GRN-2026-051 — Sai Constructions" onLink={() => setLinkedGRN(true)} linked={linkedGRN} />
@@ -196,8 +196,8 @@ export default function InvoiceUploadPage() {
               {linkedPO && linkedGRN && (
                 <>
                   {/* 3-Way Match Result */}
-                  <div className="mt-4 rounded-[6px] border border-navy-600 bg-navy-900 p-3">
-                    <p className="mb-2 text-xs font-semibold text-white">3-Way Match Result</p>
+                  <div className="mt-4 rounded-[6px] border border-border bg-surface p-3">
+                    <p className="mb-2 text-xs font-semibold text-heading">3-Way Match Result</p>
                     <div className="space-y-1.5">
                       <MatchRow ok text="Vendor matches PO" />
                       <MatchRow ok text="Amount within 5% tolerance of PO (₹3,09,750 vs PO ₹3,00,000 — variance ₹9,750 = 3.2%)" />
@@ -206,20 +206,20 @@ export default function InvoiceUploadPage() {
                   </div>
 
                   {/* Duplicate Check */}
-                  <div className="mt-3 rounded-[6px] border border-navy-600 bg-navy-900 p-3">
-                    <p className="mb-2 text-xs font-semibold text-white">Duplicate Check</p>
+                  <div className="mt-3 rounded-[6px] border border-border bg-surface p-3">
+                    <p className="mb-2 text-xs font-semibold text-heading">Duplicate Check</p>
                     <MatchRow ok text="No duplicate found (invoice number and amount are unique)" />
                   </div>
 
                   {/* Action Buttons */}
                   <div className="mt-4 space-y-2">
-                    <button onClick={() => showToast('Invoice INV-2026-051 submitted for approval')} className="w-full rounded-[6px] bg-gold-500 py-2.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400">
+                    <button onClick={() => showToast('Invoice INV-2026-051 submitted for approval')} className="w-full rounded-[6px] bg-primary py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover">
                       Submit for Approval
                     </button>
-                    <button onClick={() => showToast('Invoice saved as draft')} className="w-full rounded-[6px] border border-white/20 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/5">
+                    <button onClick={() => showToast('Invoice saved as draft')} className="w-full rounded-[6px] border border-white/20 py-2.5 text-sm font-semibold text-heading transition-colors hover:bg-white/5">
                       Save as Draft
                     </button>
-                    <button onClick={() => { showToast('Invoice rejected and deleted'); setUploadState('idle'); setLinkedPO(false); setLinkedGRN(false); }} className="w-full rounded-[6px] border border-status-error/50 py-2.5 text-sm font-semibold text-status-error transition-colors hover:bg-status-error/10">
+                    <button onClick={() => { showToast('Invoice rejected and deleted'); setUploadState('idle'); setLinkedPO(false); setLinkedGRN(false); }} className="w-full rounded-[6px] border border-status-error/50 py-2.5 text-sm font-semibold text-[#DC2626] transition-colors hover:bg-[#FEE2E2]/60">
                       Reject & Delete
                     </button>
                   </div>
@@ -238,19 +238,19 @@ export default function InvoiceUploadPage() {
 function LinkDropdown({ label, value, onLink, linked }: { label: string; value: string; onLink: () => void; linked: boolean }) {
   return (
     <div>
-      <label className="mb-1 flex items-center gap-1.5 text-xs text-textgray">
+      <label className="mb-1 flex items-center gap-1.5 text-xs text-muted">
         <Link2 size={12} /> {label}
       </label>
       <div className="flex items-center gap-2">
         <select
           onChange={(e) => e.target.value && onLink()}
           defaultValue=""
-          className="flex-1 rounded-[6px] border border-navy-600 bg-navy-900 px-3 py-2 text-sm text-white focus:border-gold-500 focus:outline-none"
+          className="flex-1 rounded-[6px] border border-border bg-surface px-3 py-2 text-sm text-heading focus:border-primary focus:outline-none"
         >
           <option value="">Select {label.replace('Link to ', '')}...</option>
           <option value={value}>{value}</option>
         </select>
-        {linked && <Check size={16} className="text-teal-500" />}
+        {linked && <Check size={16} className="text-[#0F766E]" />}
       </div>
     </div>
   );
@@ -259,8 +259,8 @@ function LinkDropdown({ label, value, onLink, linked }: { label: string; value: 
 function MatchRow({ ok, text }: { ok: boolean; text: string }) {
   return (
     <div className="flex items-start gap-2 text-xs">
-      <Check size={14} className="mt-0.5 shrink-0 text-teal-500" />
-      <span className="text-textgray">{text}</span>
+      <Check size={14} className="mt-0.5 shrink-0 text-[#0F766E]" />
+      <span className="text-muted">{text}</span>
     </div>
   );
 }

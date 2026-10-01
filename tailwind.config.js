@@ -4,33 +4,70 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Dark sidebar — kept for Sidebar.tsx only
         navy: {
-          900: '#0D1B2A',
-          800: '#112236',
-          700: '#0F2235',
-          600: '#1A2F45',
-          500: '#243B53',
+          900: '#0A3330',
+          800: '#0D3D3A',
+          700: '#0F4440',
+          600: '#134E4A',
+          500: '#166360',
         },
+        // Primary teal accent
+        primary: {
+          DEFAULT: '#0D9488',
+          hover: '#0F766E',
+          dark: '#115E59',
+          light: '#CCFBF1',
+          text: '#0F766E',
+        },
+        // Page surfaces
+        surface: {
+          DEFAULT: '#F8FAFB',
+          card: '#FFFFFF',
+        },
+        // Border / divider
+        border: {
+          DEFAULT: '#E2E8F0',
+          input: '#CBD5E1',
+        },
+        // Text hierarchy
+        heading: '#0F1923',
+        body: '#334155',
+        muted: '#64748B',
+        subtle: '#94A3B8',
+        // Status
+        status: {
+          success: '#0F766E',
+          successBg: '#CCFBF1',
+          error: '#DC2626',
+          errorBg: '#FEE2E2',
+          warning: '#B45309',
+          warningBg: '#FEF3C7',
+          info: '#0369A1',
+          infoBg: '#E0F2FE',
+        },
+        // Legacy aliases so old pages don't break during migration
         gold: {
-          500: '#C9922A',
-          400: '#D4A23A',
-          600: '#B07F22',
+          500: '#0D9488',
+          400: '#0F766E',
+          600: '#115E59',
         },
         teal: {
-          500: '#1D9E75',
+          500: '#5EEAD4',
+          600: '#14B8A6',
+          700: '#0D9488',
         },
-        status: {
-          success: '#1D9E75',
-          error: '#E24B4A',
-          warning: '#EF9F27',
-        },
-        textgray: '#B0BEC5',
+        textgray: '#64748B',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         DEFAULT: '6px',
+      },
+      boxShadow: {
+        card: '0 4px 24px rgba(0,0,0,0.06)',
+        'card-hover': '0 8px 32px rgba(0,0,0,0.10)',
       },
       keyframes: {
         fadeIn: {

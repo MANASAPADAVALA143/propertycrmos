@@ -40,42 +40,42 @@ export default function TopBar({ onMenuClick, activeProject, onProjectChange }: 
 
   return (
     <>
-      <header className="sticky top-0 z-20 flex items-center justify-between border-b border-navy-600 bg-navy-700/95 px-4 py-3 backdrop-blur sm:px-6">
+      <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border bg-white px-4 sm:px-6">
         <div className="flex items-center gap-3">
-          <button onClick={onMenuClick} className="text-textgray hover:text-white lg:hidden">
+          <button onClick={onMenuClick} className="text-muted hover:text-heading transition-colors lg:hidden">
             <Menu size={22} />
           </button>
           <div>
-            <h1 className="text-white font-semibold text-base sm:text-lg">Good morning, Skyline</h1>
-            <p className="text-textgray text-xs">{activeProject.name} — {activeProject.location}</p>
+            <h1 className="text-[15px] font-semibold text-heading">Good morning, Manasa</h1>
+            <p className="text-xs text-muted">{activeProject.name} — {activeProject.location}</p>
           </div>
           {/* Project Switcher */}
           <div className="relative ml-2 hidden sm:block">
             <button
               onClick={() => setProjectDropdownOpen(!projectDropdownOpen)}
-              className="flex items-center gap-2 rounded-[6px] border border-navy-600 bg-navy-800 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-navy-600/30"
+              className="flex items-center gap-2 rounded-[6px] border border-border px-3 py-1.5 text-xs font-medium text-body transition-colors hover:bg-surface"
             >
               {activeProject.name}
-              <ChevronDown size={14} className="text-textgray" />
+              <ChevronDown size={13} className="text-muted" />
             </button>
             {projectDropdownOpen && (
-              <div className="absolute left-0 top-full mt-1 z-30 w-64 rounded-[6px] border border-navy-600 bg-navy-800 py-2 shadow-xl">
+              <div className="absolute left-0 top-full mt-1 z-30 w-64 rounded-[6px] border border-border bg-white py-1.5 shadow-card">
                 {projects.map((p) => (
                   <button
                     key={p.id}
                     onClick={() => { onProjectChange(p); setProjectDropdownOpen(false); }}
-                    className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-textgray transition-colors hover:bg-navy-600/30"
+                    className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-body transition-colors hover:bg-surface"
                   >
                     {p.name}
-                    {p.id === activeProject.id && <Check size={14} className="text-gold-500" />}
+                    {p.id === activeProject.id && <Check size={14} className="text-primary" />}
                   </button>
                 ))}
-                <div className="my-1 border-t border-navy-600" />
+                <div className="my-1 border-t border-border" />
                 <button
                   onClick={() => { setShowAddModal(true); setProjectDropdownOpen(false); }}
-                  className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-gold-500 transition-colors hover:bg-navy-600/30"
+                  className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-primary transition-colors hover:bg-surface"
                 >
-                  <Plus size={14} /> Add New Project
+                  <Plus size={13} /> Add New Project
                 </button>
               </div>
             )}
@@ -83,21 +83,21 @@ export default function TopBar({ onMenuClick, activeProject, onProjectChange }: 
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="relative text-textgray hover:text-white transition-colors">
+          <button className="relative text-muted hover:text-heading transition-colors">
             <Bell size={20} />
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-status-error text-[9px] font-bold text-white">3</span>
+            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-status-error text-[9px] font-bold text-white">3</span>
           </button>
-          <div className="flex h-9 w-9 items-center justify-center rounded-[6px] bg-gold-500 font-bold text-navy-900 text-sm">SV</div>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-light text-sm font-bold text-primary-text">MP</div>
         </div>
       </header>
 
       {/* Add Project Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-[6px] border border-navy-600 bg-navy-800 p-6">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/30 p-4">
+          <div className="w-full max-w-md rounded-[10px] border border-border bg-white p-6 shadow-card-hover">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Add New Project</h2>
-              <button onClick={() => setShowAddModal(false)} className="text-textgray hover:text-white"><X size={20} /></button>
+              <h2 className="text-[16px] font-semibold text-heading">Add New Project</h2>
+              <button onClick={() => setShowAddModal(false)} className="text-muted hover:text-heading"><X size={20} /></button>
             </div>
             <div className="space-y-3">
               <Field label="Project Name" value={newProject.name} onChange={(v) => setNewProject({ ...newProject, name: v })} />
@@ -108,7 +108,7 @@ export default function TopBar({ onMenuClick, activeProject, onProjectChange }: 
                 <Field label="Unit Size (sq yards)" value={newProject.unitSize} onChange={(v) => setNewProject({ ...newProject, unitSize: v })} type="number" />
               </div>
               {autoCalcUnits > 0 && (
-                <p className="text-xs text-teal-500">Auto-calculated units: {autoCalcUnits}</p>
+                <p className="text-xs text-primary">Auto-calculated units: {autoCalcUnits}</p>
               )}
               <div className="grid grid-cols-2 gap-3">
                 <Field label="Unit Price (₹)" value={newProject.unitPrice} onChange={(v) => setNewProject({ ...newProject, unitPrice: v })} type="number" />
@@ -118,7 +118,7 @@ export default function TopBar({ onMenuClick, activeProject, onProjectChange }: 
             </div>
             <button
               onClick={handleCreateProject}
-              className="mt-5 w-full rounded-[6px] bg-gold-500 py-2.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400"
+              className="mt-5 w-full rounded-[7px] bg-primary py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
             >
               Create Project
             </button>
@@ -132,12 +132,12 @@ export default function TopBar({ onMenuClick, activeProject, onProjectChange }: 
 function Field({ label, value, onChange, type = 'text' }: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
   return (
     <div>
-      <label className="mb-1 block text-xs text-textgray">{label}</label>
+      <label className="mb-1 block text-xs text-muted">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-[6px] border border-navy-600 bg-navy-900 px-3 py-2 text-sm text-white placeholder-textgray focus:border-gold-500 focus:outline-none"
+        className="w-full rounded-[6px] border border-border-input bg-surface px-3 py-2 text-sm text-heading placeholder-subtle focus:border-primary focus:outline-none"
       />
     </div>
   );

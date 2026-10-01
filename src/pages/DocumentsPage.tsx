@@ -19,32 +19,32 @@ export default function DocumentsPage() {
     <div className="animate-fadeIn space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Documents</h1>
-          <p className="mt-1 text-sm text-textgray">{documents.length} files across all units</p>
+          <h1 className="text-2xl font-bold text-heading">Documents</h1>
+          <p className="mt-1 text-sm text-muted">{documents.length} files across all units</p>
         </div>
-        <button onClick={() => showToast('Upload dialog opened')} className="flex items-center justify-center gap-2 rounded-[6px] bg-gold-500 px-4 py-2.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-gold-400">
+        <button onClick={() => showToast('Upload dialog opened')} className="flex items-center justify-center gap-2 rounded-[6px] bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover">
           <Upload size={18} /> Upload Document
         </button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {documents.map((doc, i) => (
-          <div key={i} className="rounded-[6px] border border-navy-600 bg-navy-800 p-5 transition-colors hover:border-gold-500/40">
+          <div key={i} className="rounded-[6px] border border-border bg-white p-5 transition-colors hover:border-primary/40">
             <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] bg-gold-500/15">
-                <FileText size={20} className="text-gold-500" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[6px] bg-primary-light">
+                <FileText size={20} className="text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-white">{doc.name}</p>
-                <p className="mt-1 text-xs text-textgray">{doc.type} · {doc.unit}</p>
-                <p className="mt-1 text-xs text-textgray">Uploaded {doc.uploaded}</p>
+                <p className="truncate text-sm font-medium text-heading">{doc.name}</p>
+                <p className="mt-1 text-xs text-muted">{doc.type} · {doc.unit}</p>
+                <p className="mt-1 text-xs text-muted">Uploaded {doc.uploaded}</p>
               </div>
             </div>
             <div className="mt-4 flex items-center gap-2">
-              <button onClick={() => showToast(`Downloading ${doc.name}`)} className="flex flex-1 items-center justify-center gap-1.5 rounded-[6px] border border-navy-600 py-2 text-xs font-medium text-textgray transition-colors hover:text-white">
+              <button onClick={() => showToast(`Downloading ${doc.name}`)} className="flex flex-1 items-center justify-center gap-1.5 rounded-[6px] border border-border py-2 text-xs font-medium text-muted transition-colors hover:text-heading">
                 <Download size={14} /> Download
               </button>
-              <span className="flex items-center gap-1 text-xs text-teal-500"><FileCheck size={12} /> Verified</span>
+              <span className="flex items-center gap-1 text-xs text-[#0F766E]"><FileCheck size={12} /> Verified</span>
             </div>
           </div>
         ))}

@@ -9,7 +9,7 @@ export default function AppLayout() {
   const [activeProject, setActiveProject] = useState<ProjectData>(projects[0]);
 
   return (
-    <div className="min-h-screen bg-navy-700">
+    <div className="min-h-screen bg-surface">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="lg:pl-[220px]">
         <TopBar onMenuClick={() => setSidebarOpen(true)} activeProject={activeProject} onProjectChange={setActiveProject} />
